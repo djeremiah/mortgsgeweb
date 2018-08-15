@@ -1,0 +1,112 @@
+<div ng-controller="UserTaskCtrl" ng-init="getTasks()">
+
+<div class="col-md-9" id="main" >
+   <!-- <h2 id="hdr">User Tasks</h2> -->
+	
+	 <div class="panel panel-primary">
+			  <div class="panel-heading">User Tasks</div>
+			  <div class="panel-body">
+				<form id="myForm" class="form-inline" style="padding-right: 10px">
+					<label>User				   
+						<select ng-model="user" class="input-small">   
+							<option value="all" selected>all</option>
+							<option value="jey">John</option>						  
+						</select>
+					</label>
+				  
+				   <button id="showDetail" type="button" class="btn btn-success btn-sm" ng-click="getTasks()">
+											<span class="glyphicon glyphicon-search"></span> Search
+				   </button>
+				
+		      
+				 <table class="table table-hover table-striped table-condensed table-bordered ordersTable" ng-show='tskState.show' >
+				
+					<thead>
+					<tr>
+						<th >Task Id</th>
+						<th >Name</th>
+						<th >status</th>
+						<th >Owned By</th>
+						<th >Description</th>
+						<th >Task Action</th>
+
+					 </tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="task in tasks">
+							<td>{{ task.id }}</td>
+							<td>{{ task.name }}</td>
+							<td>{{ task.status }}</td>
+							<td>{{ task.actualOwnerId }}</td>
+							<td>{{ recs.description }}</td>
+				            <td><a ng-click="taskWork(task.id)" class="btn btn-small btn-success">Work on Task</a></td>
+						</tr>
+					</tbody>
+				</table>
+              </form>				
+            </div>
+		</div>  
+
+	   <form novalidate="novalidate" ng-show="taskDet" > 
+			<div class="panel panel-primary">
+			  <div class="panel-heading">Task Detail</div>
+			  <div class="panel-body">		  
+				   <div class="control-group">
+						<label class="control-label" >Task Id:</label>
+						  <input id="task.id" type="text" disabled="true" ng-model="task.id" />	
+					</div>
+					<div class="control-group">
+						<label class="control-label" >Case Id:</label>
+						  <input id="task.caseId" type="text" disabled="true" ng-model="task.caseId" />	
+					</div>
+					<div class="control-group">
+						<label class="control-label" >Task Name:</label>
+						  <input id="task.name" type="text" disabled="true" ng-model="task.name" />	
+					</div>
+					<div class="control-group">
+						<label class="control-label" >Actual Task Owner:</label>
+						  <input id="task.actualOwnerId" type="text" disabled="true" ng-model="task.actualOwnerId" />	
+					</div>
+					<div class="control-group">
+						<label class="control-label" >Task status:</label>
+						  <input id="task.status" type="text" disabled="true" ng-model="task.status" />	
+					</div>
+					<!-- 
+					<div class="control-group">
+						<label class="control-label" >Priority:</label>
+						  <input id="in" type="text"  ng-model="priority" />	
+					</div>
+					<div class="control-group">
+						<label class="control-label" >Model Number:</label>
+						  <input id="in" type="text"  ng-model="modelNumber" />			
+					</div>
+					<div class="control-group">
+						<label class="control-label" for="quantity">Quantity:</label>             
+						  <input id="in" type="text"  ng-model="quantity" />			
+					</div>		
+					 
+					 <div ng-if="claim">
+					 	<div class="control-group">
+					 	  <button id="showDetail" type="button" class="btn btn-success btn-sm" ng-click="CompleteTask(task.id)">
+										<span class="glyphicon"></span> Claim
+					  		</button>
+					 	</div>
+					 </div>
+					 <div ng-if="start">
+					 	<div class="control-group">
+					 	  <button id="showDetail" type="button" class="btn btn-success btn-sm" ng-click="CompleteTask()">
+										<span class="glyphicon"></span> Start
+					  		</button>
+					 	</div>
+					 </div>
+					 -->
+					 <button id="showDetail" type="button" class="btn btn-success btn-sm" ng-click="CompleteTask(task.id,task.status)">
+										<span class="glyphicon"></span> Complete Task
+					  		</button>
+					 	</div>
+					 
+					</div>
+				</div>			  	   
+       </form>	
+  
+ </div>  

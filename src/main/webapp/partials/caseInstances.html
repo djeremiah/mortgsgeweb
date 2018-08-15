@@ -1,0 +1,191 @@
+<div ng-controller="caseCtrl" ng-init="getAllcases()">
+<div class="col-md-9" id="main"  >
+   <!-- <h2 id="hdr">User Tasks</h2> -->
+   
+   <div class="panel-group" id="accordion1">
+	<div class="panel panel-default">
+	<div class="panel-heading">
+						<h4 class="panel-title">
+							<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#panel11" ng-click="getAlcases()" >Mortgage  processes</a> 
+						</h4>
+					</div>
+					<div id="panel11" class="panel-collapse collapse">
+			 <!-- div class="panel panel-primary" >
+			  <!--div class="panel-heading">Cases</div-->
+			  <div class="panel-body">
+				<form id="myForm" class="form-inline" style="padding-right: 10px">
+					<!-- label>User				   
+						<select ng-model="user" class="input-small">   
+							<option value="krisv" selected>Kris</option>
+							<option value="john">John</option>						  
+						</select>
+					</label> -->
+				  
+				  <!--  <button id="showDetail" type="button" class="btn btn-success btn-sm" ng-click="getAllcases()">
+											<span class="glyphicon glyphicon-search"></span> get All cases
+				   </button> -->
+				 
+		      
+				 <table class="table table-hover table-striped table-condensed  ordersTable"  >
+				
+					<thead>
+					<tr>
+						<th >Id</th>
+						<th >Name</th>
+						<th >Status</th>
+						
+						<th >View Mortgage Detail</th>
+						<th >View Mortgage Process</th>
+
+					 </tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="case in caseinstances">
+							<td>{{ case.id }}</td>
+							<td>{{ case.name }}</td>
+							<td>{{ case.status }}</td>
+							<td>{{ case.dateCreated }}</td>
+							<!-- <td>{{ case.initiator }}</td> -->							
+				             <td><a ng-click="caseWork(case.id,case.status)" class="btn btn-small btn-success">view case</a></td>
+				             <td><a ng-click="openChildWindow1(case.id)" class="btn btn-small btn-success">view Process flow</a></td>
+						</tr>
+					</tbody>
+				</table>
+             </form>				
+            </div>
+		</div-->  
+		</div> 
+		</div>
+		<!-- accordian panel  -->
+		<div class="panel panel-default">
+		<div class="panel-heading">
+						<h4 class="panel-title">
+							<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#panel12">Dispute case process instance detail</a> 
+						</h4>
+					</div>
+		<div id="panel12" class="panel-collapse collapse.in">
+					
+		
+			<div class="panel panel-default" ng-show="caseDet" >
+			  <div class="panel-heading">Mortgage information for - {{ processId }}</div>
+			  <div class="panel-body">		  
+			  <form class="form-horizontal"  > 
+				   <div class="form-group">
+						<label class="control-label" >Applicant Name:</label>
+						  <input id="in1" type="text"  ng-model="caseDetail.name" />	
+					</div>
+					<div class="form-group">
+						<label class="control-label" >Sale Price:</label>
+						  <input id="in2" type="text"  ng-model="caseDetail.saleprice" />	
+					</div>
+					<div class="form-group">
+						<label class="control-label" >Down Payment:</label>
+						  <input id="in3" type="text"  ng-model="caseDetail.downpayment" />			
+					</div>
+					<div class="form-group">
+						<label class="control-label" >Annual Income:</label>             
+						  <input id="in4" type="text"  ng-model="caseDetail.annualincome" />			
+					</div>	
+					
+					<div class="form-group">
+						<label class="control-label" >Age of property</label>             
+						  <input id="in6" type="text"  ng-model="caseDetail.ageofproperty" />			
+					</div>	
+					<div class="form-group">
+						<label class="control-label" >Local</label>             
+						  <input id="in7" type="text"  ng-model="caseDetail.locale" />			
+					</div>
+					<div class="form-group">
+						<label class="control-label" >Property Address</label>             
+						  <input id="in8" type="text"  ng-model="caseDetail.addressofproperty" />			
+					</div>
+					
+					
+				
+					
+					
+					  <button id="showDetail" type="button" class="btn btn-success btn-sm" ng-click="updateProcess(processId)">
+										<span class="glyphicon"></span> Submit
+					  </button>
+					   </form>
+					</div>
+				<div class="panel-footer">
+		     <h5> <span ng-show='procUpdate.show' class="label label-default">Mortgage Request updated Successfully </span></h5>
+
+		   </div>
+				</div>	
+				 	   
+     
+      
+      <div class="panel panel-default" ng-show="caseDet">
+     
+			  <div class="panel-heading">Mortgage process instance activities {{ processId }} </div>
+			  <div class="panel-body">	
+			  <!-- form id="myForm2" class="form-inline" style="padding-right: 10px"-->
+        		<table class="table table-hover table-striped table-condensed table-bordered ordersTable"  >
+				
+					<thead>
+					<tr>
+						<th >Id</th>
+						<th >Name</th>
+						<th >status</th>
+						<th >date created</th>
+						<th >Task owner</th>
+			        </tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="activity in caseDetail.activities">
+							<td>{{ activity.taskId }}</td>
+							<td>{{ activity.name }}</td>
+							<td>{{ activity.status }}</td>
+							<td>{{ activity.date }}</td>
+							<td>{{ activity.user }}</td>
+						
+							<td><a ng-click="processTask(activity.taskId,activity.status)" class="btn btn-small btn-success">complete task</a></td>
+						</tr>
+					</tbody>
+				</table>
+				
+				 
+				</div>
+		</div>		
+				<!--  
+			  <div class="panel panel-primary" ng-show="caseDet">
+			<div class="panel-heading">Merchant Receipt  update - {{ processId }} </div>
+			
+			  <div class="panel-body">	
+			    <form novalidate="novalidate"  > 
+			  <div class="control-group">
+				<label class="control-label" >select receipt request message name</label>
+				
+					<select id="in" ng-model="signalName" class="search-query input-medium" >
+						    <option value="receiptReceived">Receipt signal name</option>
+												  
+						</select>               
+			
+			</div>
+			
+			 <div class="control-group">
+				<label class="control-label" >data</label>
+				
+					<select id="in" ng-model="signalData" class="search-query input-medium" >
+						    <option value="Y">Document received</option>
+							<option value="N">Document not received</option>					  
+						</select>               
+			
+			</div>
+			    <button id="sendSign" type="button" class="btn btn-success btn-sm" ng-click="sendSignal(processId)">
+										<span class="glyphicon"></span> Update Receipt status
+					  </button>
+			 	</div>
+			 	</form>
+			</div>
+			-->
+			</div>
+			</div>		 
+			 </div> <!-- acour end -->
+</div>
+
+	 
+
+</div>

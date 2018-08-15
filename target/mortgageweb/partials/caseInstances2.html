@@ -1,0 +1,180 @@
+<div class="col-md-9" id="main"  >
+   <!-- <h2 id="hdr">User Tasks</h2> -->
+	
+	 <div class="panel panel-primary">
+			  <div class="panel-heading">Cases</div>
+			  <div class="panel-body">
+				<form id="myForm" class="form-inline" style="padding-right: 10px">
+					<!-- label>User				   
+						<select ng-model="user" class="input-small">   
+							<option value="krisv" selected>Kris</option>
+							<option value="john">John</option>						  
+						</select>
+					</label> -->
+				  
+				   <button id="showDetail" type="button" class="btn btn-success btn-sm" ng-click="getAllcases()">
+											<span class="glyphicon glyphicon-search"></span> get All cases
+				   </button>
+				 
+		      
+				 <table class="table table-hover table-striped table-condensed table-bordered ordersTable"  >
+				
+					<thead>
+					<tr>
+						<th >Id</th>
+						<th >Name</th>
+						<th >status</th>
+						<th >deploymentId</th>
+						<th >Initiator</th>
+						
+
+					 </tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="case in caseinstances">
+							<td>{{ case.id }}</td>
+							<td>{{ case.name }}</td>
+							<td>{{ case.status }}</td>
+							<td>{{ case.deploymentId }}</td>
+							<td>{{ case.initiator }}</td>
+				             <td><a ng-click="caseWork(case.id)" class="btn btn-small btn-success">view case</a></td>
+						</tr>
+					</tbody>
+				</table>
+             </form>				
+            </div>
+		</div>  
+		 <form novalidate="novalidate" ng-show="caseDet" > 
+			<div class="panel panel-primary">
+			  <div class="panel-heading">case information</div>
+			  <div class="panel-body">		  
+				   <div class="control-group">
+						<label class="control-label" >Name:</label>
+						  <input id="in" type="text" disabled="true" ng-model="caseDetail.customer.name" />	
+					</div>
+					<div class="control-group">
+						<label class="control-label" >Address:</label>
+						  <input id="in" type="text"  ng-model="caseDetail.customer.address" />	
+					</div>
+					<div class="control-group">
+						<label class="control-label" >City:</label>
+						  <input id="in" type="text"  ng-model="caseDetail.customer.city" />			
+					</div>
+					<div class="control-group">
+						<label class="control-label" >State:</label>             
+						  <input id="in" type="text"  ng-model="caseDetail.customer.state" />			
+					</div>	
+					<div class="control-group">
+						<label class="control-label" >Zip:</label>             
+						  <input id="in" type="text"  ng-model="caseDetail.customer.zip" />			
+					</div>		
+					  <button id="showDetail" type="button" class="btn btn-success btn-sm" ng-click="CompleteTask(priority,modelNumber,quantity)">
+										<span class="glyphicon"></span> Complete Task
+					  </button>	
+					</div>
+				</div>			  	   
+       </form>	
+      <div class="panel panel-primary">
+			  <div class="panel-heading">Account information</div>
+			  <div class="panel-body">	
+        <table class="table table-hover table-striped table-condensed table-bordered ordersTable"  >
+				
+					<thead>
+					<tr>
+						<th >Account Type</th>
+						<th >Amount</th>
+			        </tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="account in caseDetail.accounts">
+							<td>{{ account.type }}</td>
+							<td>{{ account.amount }}</td>
+				             <td><a ng-click="taskWork(recs.processId,recs.id)" class="btn btn-small btn-success">Work on Task</a></td>
+						</tr>
+					</tbody>
+				</table>
+				</div>
+				</div>
+			<div class="panel panel-primary">
+			  <div class="panel-heading">List case Activity</div>
+			  <div class="panel-body">	
+        		<table class="table table-hover table-striped table-condensed table-bordered ordersTable"  >
+				
+					<thead>
+					<tr>
+						<th >ActionItems</th>
+						
+			        </tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="actiionItem in caseDetail.actionItems">
+							<td>{{ actiionItem.activityName }}</td>
+							
+						</tr>
+					</tbody>
+				</table>
+				</div>
+				</div>
+				
+					<div class="panel panel-primary">
+			  <div class="panel-heading">List case Activity in progress</div>
+			  <div class="panel-body">	
+        		<table class="table table-hover table-striped table-condensed table-bordered ordersTable"  >
+				
+					<thead>
+					<tr>
+						<th >ActionItems in progress</th>
+						
+			        </tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="actiionItem in caseDetail.actionItemsInprogress">
+							<td>{{ actiionItem.activityName }}</td>
+							
+						</tr>
+					</tbody>
+				</table>
+				</div>
+				</div>
+			 <div class="panel panel-primary">
+			  <div class="panel-heading">Existing case User</div>
+			  <div class="panel-body">	
+        		<table class="table table-hover table-striped table-condensed table-bordered ordersTable"  >
+				
+					<thead>
+					<tr>
+						<th >User</th>
+						
+			        </tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="user in caseDetail.caseUsers">
+							<td>{{ user.userId }}</td>
+							
+						</tr>
+					</tbody>
+				</table>
+				</div>
+				</div>
+				<div class="panel panel-primary">
+			  <div class="panel-heading">Existing case Role</div>
+			  <div class="panel-body">	
+        		<table class="table table-hover table-striped table-condensed table-bordered ordersTable"  >
+				
+					<thead>
+					<tr>
+						<th >Role</th>
+						
+			        </tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="role in caseDetail.caseRoles">
+							<td>{{ role.roleId }}</td>
+							
+						</tr>
+					</tbody>
+				</table>
+				</div>
+				</div>
+				
+</div>

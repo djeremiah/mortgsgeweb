@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.0" xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">	
+    <persistence-unit name="dispute"  >
+    <provider>org.hibernate.ejb.HibernatePersistence</provider>
+    <!-- jta-data-source>java:jboss/datasources/aa</jta-data-source -->
+    <!--  mapping-file>persistance.xml</mapping-file-->
+    <!--  jar-file>dao-10.jar</jar-file-->    
+	<class>org.jbpm.spring.model.AccountInfo</class>
+	<class>org.jbpm.spring.model.Transaction</class>
+	<class>org.jbpm.spring.model.AccountBalance</class>
+	<class>com.redhat.payment.SMSMessageDetail</class>
+	<class>redhat.promo.PromoTransaction</class>
+	<class>redhat.promo.PromoAcct</class>
+	
+	
+	<!--  -class>com.dao.ProviderInfo</class>
+	<class>com.dao.PharmacyStore</class>
+	<class>com.dao.Order</class>
+	<class>com.dao.Item</class>
+	<class>com.dao.Customer</class-->
+	<properties>  
+	   
+	   <property name = "hibernate.connection.url" value = "jdbc:mysql://localhost:3306/jbpm63gatest"/> 
+	  <property name = "hibernate.connection.username" value = "root"/> 
+	 <property name = "hibernate.connection.password" value = "jeypaulraj"/> 
+      <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect"/>          
+      <property name="hibernate.max_fetch_depth" value="3"/>
+      <property name="hibernate.hbm2ddl.auto" value="update" />
+      <property name="hibernate.show_sql" value="true" />  
+      <property name="format_sql" value ="true" />
+		<property name="use_sql_comments" value ="true" />
+      <!-- property name="hibernate.transaction.manager_lookup_class" value="org.hibernate.transaction.JBossTransactionManagerLookup" /-->
+    </properties>      
+	</persistence-unit>
+	
+</persistence>

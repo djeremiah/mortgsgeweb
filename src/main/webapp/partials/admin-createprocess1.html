@@ -1,0 +1,75 @@
+			
+<div class="row">					
+	<div class="col-md-8"> 
+		<!-- <h4>Create Process </h4> -->
+      
+     <div class="panel panel-primary">
+			  <div class="panel-heading">Customer onboarding Case </div>
+			  <div class="panel-body">
+			
+		<form novalidate="novalidate" class="form-horizontal">
+		<div>
+			<div class="control-group">
+								 
+				<label class="control-label" >Name:</label>
+				  <input id="in" type="text"  ng-model="customerOnboarding.customer.name"  class="search-query input-medium">
+				
+			</div>
+			<div class="control-group">
+				<label class="control-label" >Address:</label>
+				  <input id="in" type="text"  ng-model="customerOnboarding.customer.address"  class="search-query input-medium">
+				
+			</div>
+			<div class="control-group">
+				<label class="control-label" >City:</label>
+               
+				  <input id="in" type="text"  ng-model="customerOnboarding.customer.city" class="search-query input-medium">
+				
+			</div>
+			<div class="control-group">
+				<label class="control-label" >State:</label>
+               
+				  <input id="in" type="text"  ng-model="customerOnboarding.customer.state"  class="search-query input-medium">
+				
+			</div>
+			<div class="control-group">
+				<label class="control-label" for="zip">zip:</label>
+               
+				  <input id="in" type="text"  ng-model="customerOnboarding.customer.zip"  class="search-query input-medium">
+				
+			</div>
+			
+			<div class="control-group">
+				<label class="control-label" for="type">Account type:</label>
+               
+				  <input id="in" type="text"  ng-model="customerOnboarding.account.type" ng-init="type='checking'" class="search-query input-medium">
+				
+			</div>
+			
+			<div class="control-group">
+				<label class="control-label" >Minimum Amount:</label>
+               
+				  <input id="in" type="text"  ng-model="customerOnboarding.account.amount"  class="search-query input-medium">
+				
+			</div>
+			
+			  <button id="showDetail" type="button" class="btn btn-success btn-sm" ng-click="CreateProcess()">
+								<span class="glyphicon"></span> create case
+	          </button>
+			  
+	      </div>
+			
+			
+			
+		</form>
+		</div>
+		
+		  <div class="panel-footer">
+		     <h5> <span ng-show='procCreate.show' class="label label-default">Case Created Successfully </span></h5>
+
+		   </div>
+        </div>		
+		
+	</div>
+</div>
+
